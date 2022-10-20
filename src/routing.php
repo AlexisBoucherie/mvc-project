@@ -1,17 +1,21 @@
 <?php
 
+require 'Controllers/ArticleController.php';
+
 //var_dump(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 
 $pathURL = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$articleController = new articleController();
+
 
 if ('/home' === $pathURL) {
-    require '../src/Views/home.php';
+    $articleController->home();
 } elseif ('/show' === $pathURL) {
-    require '../src/Views/show.php';
+    $articleController->show();
 } elseif ('/edit' === $pathURL) {
-    require '../src/Views/edit.php';
+    $articleController->edit();
 } elseif ('/delete' === $pathURL) {
-    require '../src/Views/delete.php';
+    $articleController->delete();
 } else {
-    echo "Cette page n'existe pas";
+    echo "<h1>Cette page n'existe pas</h1>";
 }
